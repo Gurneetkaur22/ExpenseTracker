@@ -25,7 +25,7 @@ public class ReportService {
     }
     
     @ReportView
-    @Transactional(readOnly = true)
+    @Transactional
     public Report generateWeeklyReport(LocalDate anyDateInWeek) {
         // ISO week: Monday..Sunday
         LocalDate start = anyDateInWeek.with(java.time.DayOfWeek.MONDAY);
@@ -34,20 +34,20 @@ public class ReportService {
     }
 
     @ReportView
-    @Transactional(readOnly = true)
+    @Transactional
     public Report generateLast7DaysReport(LocalDate today) {
         LocalDate start = today.minusDays(6);
         return buildReport(start, today);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Report generateMonthlyReport(YearMonth ym) {
         LocalDate start = ym.atDay(1);
         LocalDate end   = ym.atEndOfMonth();
         return buildReport(start, end);
     }
     
-    @Transactional(readOnly = true)
+    @Transactional
     public Report generateRangeReport(LocalDate start, LocalDate end) {
         return buildReport(start, end);
     }

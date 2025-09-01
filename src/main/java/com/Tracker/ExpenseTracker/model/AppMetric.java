@@ -2,6 +2,7 @@ package com.Tracker.ExpenseTracker.model;
 
 import jakarta.persistence.*;
 @Entity
+@Table(name = "app_metric")
 public class AppMetric {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
