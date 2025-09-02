@@ -8,7 +8,7 @@ A Java-based console application for managing personal expenses.
 4. Generate monthly reports
 5. Generate weekly reports
 
-File-based persistence (saves data locally) using jdbc
+File-based persistence (saves data locally) using hibernate
 
 #Tech Stack:
 Language: Java
