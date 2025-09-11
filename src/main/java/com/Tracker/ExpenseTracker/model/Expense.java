@@ -6,7 +6,8 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
 
-@Entity
+////mapped to table in db
+@Entity   
 public class Expense {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

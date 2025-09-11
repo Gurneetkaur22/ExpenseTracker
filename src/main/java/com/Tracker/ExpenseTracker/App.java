@@ -40,6 +40,7 @@ public class App {
                              ReportService reportService,
                              AppMetricRepo metricRepo) {
         return args -> {
+        	new Thread(() -> {
             System.out.println("=== Personal Finance Tracker (Console) ===");
             System.out.println("Categories: " + Arrays.toString(Category.values()));
 
@@ -86,7 +87,9 @@ public class App {
             }
 
             System.out.println("Goodbye!");
+        	}).start();
         };
+        
     }
 
     private void addExpenseFlow(Scanner sc, ExpenseService expenseService) {
