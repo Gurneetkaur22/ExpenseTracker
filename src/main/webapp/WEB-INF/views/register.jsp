@@ -1,13 +1,21 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
+<head>
+    <title>Register</title>
+</head>
 <body>
-<h2>Register</h2>
-<c:if test="${not empty error}"><div style="color:red">${error}</div></c:if>
-<form action="/register" method="post">
-    Username: <input name="username"/><br/>
-    Password: <input name="password" type="password"/><br/>
-    <button type="submit">Register</button>
-</form>
-<a href="/login">Login</a>
+    <h2>Register</h2>
+    <form action="saveUser" method="post">
+        Username: <input type="text" name="username"/><br/>
+        Password: <input type="password" name="password"/><br/>
+        <input type="submit" value="Register"/>
+    </form>
+
+    <c:if test="${not empty message}">
+        <p style="color:green">${message}</p>
+    </c:if>
+
+    <p>Already registered? <a href="login.jsp">Login here</a></p>
 </body>
 </html>

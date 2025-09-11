@@ -1,81 +1,35 @@
 package com.Tracker.ExpenseTracker.model;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import jakarta.persistence.*;
+import java.time.LocalDate;
 
-////mapped to table in db
-@Entity   
+@Entity
+@Table(name = "expense")
 public class Expense {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String description;
-	
-	@Enumerated(EnumType.STRING)
-	private Category category;
-	@Column(precision = 12, scale = 2, nullable = false)
-	private BigDecimal amount; 
-	@Column(nullable = false)
-	private LocalDate date; // spending date
-	private LocalDateTime createdAt; 
-	private LocalDateTime updatedAt;
-	
-	public Expense() {}
-		public Expense(String description, Category category, BigDecimal amount, LocalDate date) { 
-			this.description = description;
-			this.category = category;
-			this.amount = amount; 
-			this.date = date;
-			}
-		
-		@PrePersist
-		public void prePersist() { createdAt = LocalDateTime.now(); updatedAt = createdAt; }
-		@PreUpdate 
-		public void preUpdate() { updatedAt = LocalDateTime.now(); }
-		public Long getId() {
-			return id;
-		}
-		public void setId(Long id) {
-			this.id = id;
-		}
-		public String getDescription() {
-			return description;
-		}
-		public void setDescription(String description) {
-			this.description = description;
-		}
-		public Category getCategory() {
-			return category;
-		}
-		public void setCategory(Category category) {
-			this.category = category;
-		}
-		public BigDecimal getAmount() {
-			return amount;
-		}
-		public void setAmount(BigDecimal amount) {
-			this.amount = amount;
-		}
-		public LocalDate getDate() {
-			return date;
-		}
-		public void setDate(LocalDate date) {
-			this.date = date;
-		}
-		public LocalDateTime getCreatedAt() {
-			return createdAt;
-		}
-		public void setCreatedAt(LocalDateTime createdAt) {
-			this.createdAt = createdAt;
-		}
-		public LocalDateTime getUpdatedAt() {
-			return updatedAt;
-		}
-		public void setUpdatedAt(LocalDateTime updatedAt) {
-			this.updatedAt = updatedAt;
-		}
-	}
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long expenseId;
 
+    private String category;
+    private Double amount;
+    private LocalDate date;
+    private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    // Getters & Setters
+    public Long getExpenseId() { return expenseId; }
+    public void setExpenseId(Long expenseId) { this.expenseId = expenseId; }
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+    public Double getAmount() { return amount; }
+    public void setAmount(Double amount) { this.amount = amount; }
+    public LocalDate getDate() { return date; }
+    public void setDate(LocalDate date) { this.date = date; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+}

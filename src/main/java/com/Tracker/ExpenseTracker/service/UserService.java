@@ -1,37 +1,24 @@
 package com.Tracker.ExpenseTracker.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.Tracker.ExpenseTracker.model.User;
 import com.Tracker.ExpenseTracker.repo.UserRepo;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 @Service
 public class UserService {
-
     @Autowired
-    private UserRepo userRepo;
+    private UserRepo userRepository;
 
-    public boolean existsByUsername(String username) {
-        return userRepo.findByUsername(username).isPresent();
+    public User register(User user) {
+        return userRepository.save(user);
     }
 
-    public void saveUser(String username, String password) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password); 
-        userRepo.save(user);
-    }
-
-    public boolean validateUser(String username, String password) {
-        return userRepo.findByUsername(username)
-                .map(u -> u.getPassword().equals(password))
-                .orElse(false);
-    }
-    
-    public List<User> getAllUsers() {
-        return userRepo.findAll();
+    public User login(String username, String password) {
+        User u = userRepository.findByUsername(username);
+        if (u != null && u.getPassword().equals(password)) {
+            return u;
+        }
+        return null;
     }
 }
