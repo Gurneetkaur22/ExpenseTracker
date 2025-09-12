@@ -1,12 +1,12 @@
 # ExpenseTracker
-A Java-based console application for managing personal expenses.
+A Java-based web application for managing personal expenses.
 
 # Features:
-1. Add income and expenses
-2. Categorize transactions (e.g., food, bills, savings, etc.)
-3. View balance summary
-4. Generate monthly reports
-5. Generate weekly reports
+1. Registeration for users
+2. Login for users
+3. Add income and expenses
+4. View Expenses
+
 
 File-based persistence (saves data locally) using hibernate
 
