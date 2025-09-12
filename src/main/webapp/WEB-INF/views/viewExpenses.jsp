@@ -23,6 +23,6 @@
         </c:forEach>
     </table>
 
-    <p><a href="addExpense.jsp">Add New Expense</a></p>
+    <p><a href="${pageContext.request.contextPath}/addExpense">Add New Expense</a></p>
 </body>
 </html>

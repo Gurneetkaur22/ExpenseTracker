@@ -10,8 +10,12 @@ public class UserService {
     @Autowired
     private UserRepo userRepository;
 
-    public User register(User user) {
-        return userRepository.save(user);
+    public String register(User user) {
+    	if (userRepository.findByUsername(user.getUsername()) != null) {
+            return "User already exists!"; 
+        }
+        userRepository.save(user);
+        return "Registered Successfully!";
     }
 
     public User login(String username, String password) {

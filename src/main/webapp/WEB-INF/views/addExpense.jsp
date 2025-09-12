@@ -14,6 +14,6 @@
         <input type="submit" value="Save Expense"/>
     </form>
 
-    <p><a href="viewExpenses.jsp">View Expenses</a></p>
+    <p><a href="${pageContext.request.contextPath}/viewExpenses">View Expenses</a></p>
 </body>
 </html>

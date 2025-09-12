@@ -35,7 +35,17 @@ public class UserController {
     public String registerPage() {
         return "register";
     }
+    
+//    public String register(@ModelAttribute("user") User user, Model model) {
+//        String result = userService.register(user); // delegate to service
+//        if (result.equals("User already exists!")) {
+//            model.addAttribute("error", result);
+//            return "register";
+//        }
+//        return "redirect:/login";
+//    }
 
+    
     @PostMapping("/saveUser")
     public String saveUser(@RequestParam String username,
                            @RequestParam String password,
