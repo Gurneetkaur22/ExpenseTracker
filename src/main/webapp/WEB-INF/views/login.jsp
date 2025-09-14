@@ -17,6 +17,6 @@
         <p style="color:red">${error}</p>
     </c:if>
 
-    <p>Don’t have an account? <a href="register.jsp">Register here</a></p>
+    <p>Don’t have an account? <a href="${pageContext.request.contextPath}/register">Register here</a></p>
 </body>
 </html>

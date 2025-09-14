@@ -35,6 +35,8 @@ public class ExpenseRestController {
                             .orElseThrow(() -> new RuntimeException("User not found"));
 
         expense.setUser(user);
+        expense.setUsername(user.getUsername());
+        
         Expense saved = expenseRepo.save(expense);
 
         return ResponseEntity.ok(saved);

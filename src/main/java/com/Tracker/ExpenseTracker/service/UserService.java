@@ -1,6 +1,9 @@
 package com.Tracker.ExpenseTracker.service;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import com.Tracker.ExpenseTracker.model.User;
 import com.Tracker.ExpenseTracker.repo.UserRepo;
@@ -9,6 +12,10 @@ import com.Tracker.ExpenseTracker.repo.UserRepo;
 public class UserService {
     @Autowired
     private UserRepo userRepository;
+    
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
     public String register(User user) {
     	if (userRepository.findByUsername(user.getUsername()) != null) {
@@ -24,5 +31,8 @@ public class UserService {
             return u;
         }
         return null;
+    }
+    public boolean existsByUsername(String username) {
+        return userRepository.findByUsername(username)!=null;
     }
 }

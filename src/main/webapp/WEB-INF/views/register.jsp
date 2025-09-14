@@ -16,6 +16,6 @@
         <p style="color:green">${message}</p>
     </c:if>
 
-    <p>Already registered? <a href="login.jsp">Login here</a></p>
+    <p>Already registered? <a href="${pageContext.request.contextPath}/login">Login here</a></p>
 </body>
 </html>

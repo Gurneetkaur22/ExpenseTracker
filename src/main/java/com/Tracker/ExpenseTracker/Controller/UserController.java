@@ -1,3 +1,4 @@
+
 package com.Tracker.ExpenseTracker.Controller;
 
 import com.Tracker.ExpenseTracker.model.User;
@@ -12,7 +13,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String loginPage() {
         return "login";
     }
@@ -24,7 +25,7 @@ public class UserController {
         User user = userService.login(username, password);
         if (user != null) {
             model.addAttribute("username", username);
-            return "addExpense"; // after login go to addExpense.jsp
+            return "addExpense"; 
         } else {
             model.addAttribute("error", "Invalid credentials!");
             return "login";
@@ -35,16 +36,24 @@ public class UserController {
     public String registerPage() {
         return "register";
     }
-    
-//    public String register(@ModelAttribute("user") User user, Model model) {
-//        String result = userService.register(user); // delegate to service
-//        if (result.equals("User already exists!")) {
-//            model.addAttribute("error", result);
-//            return "register";
-//        }
-//        return "redirect:/login";
-//    }
 
+//    @PostMapping("/saveUser")
+//    public String saveUser(@RequestParam String username,
+//                           @RequestParam String password,
+//                           Model model) {
+//    	
+//    	 if (userService.existsByUsername(username)) {
+//    	        model.addAttribute("error", "Username already exists!");
+//    	        return "register";   
+//    	    }
+//    	 
+//        User user = new User();
+//        user.setUsername(username);
+//        user.setPassword(password);
+//        userService.register(user);
+//        model.addAttribute("message", "User registered successfully!");
+//        return "login";
+//    }
     
     @PostMapping("/saveUser")
     public String saveUser(@RequestParam String username,
@@ -53,8 +62,15 @@ public class UserController {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        userService.register(user);
-        model.addAttribute("message", "User registered successfully!");
-        return "login";
+
+       
+        String result = userService.register(user);  // get response from service
+        model.addAttribute("message", result);
+
+        if (result.equals("User already exists!")) {
+            return "register"; // stay on register page
+        }
+        return "login"; // redirect to login on success
     }
+
 }
