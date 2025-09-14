@@ -24,5 +24,14 @@
     </table>
 
     <p><a href="${pageContext.request.contextPath}/addExpense">Add New Expense</a></p>
+     <a href="deleteExpense/${expense.expenseId}" onclick="return confirm('Are you sure?')">Delete</a>
+    
+     <br><hr>
+    <h3>More Reports</h3>
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/reports/category">Category Wise Analysis</a></li>
+        <li><a href="${pageContext.request.contextPath}/reports/weekly">Weekly Report</a></li>
+        <li><a href="${pageContext.request.contextPath}/reports/monthly">Monthly Report</a></li>
+    </ul>
 </body>
 </html>

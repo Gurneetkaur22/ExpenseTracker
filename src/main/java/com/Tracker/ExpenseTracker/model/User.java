@@ -3,6 +3,8 @@ package com.Tracker.ExpenseTracker.model;
 import jakarta.persistence.*;
 import java.util.*;
 
+
+
 @Entity
 @Table(name = "users")
 public class User {
